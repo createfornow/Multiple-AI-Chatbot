@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import List
 from fastapi import FastAPI
 from ai_agent import get_response_from_agent
+import uvicorn
 
 class RequestState(BaseModel):
     model_name: str
@@ -13,15 +14,15 @@ class RequestState(BaseModel):
 
 app=FastAPI(title="Langgraph AI Agent")
 
-ALLOWED_MODEL_LIST=["llama3-70b-8192","mixtral-8x7b-32768", "llama-3.3-70b-versatile", "gpt-4o-mini"]
+# ALLOWED_MODEL_LIST=["llama3-70b-8192","mixtral-8x7b-32768", "llama-3.3-70b-versatile", "gpt-4o-mini"]
 @app.post("/chat")
 def chat_endpoint(request: RequestState):
     """
     API Endpoint to interact with the chatbot using LangGraph and search tool.
     It dynamically select the model specified in the request.
     """
-    if request.model_name not in ALLOWED_MODEL_LIST:
-        return {"Error": "Invalid model name. Kindly select a valid model."}
+    # if request.model_name not in ALLOWED_MODEL_LIST:
+    #     return {"Error": "Invalid model name. Kindly select a valid model."}
     
     model=request.model_name
     query=request.messages
@@ -33,7 +34,12 @@ def chat_endpoint(request: RequestState):
     return response
 
 if __name__=="__main__":
-    import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=9999)
+    # uvicorn.run(app)
+
+# run command ----python backend.py
+# or ----uvicorn backend:app --reload
+# or ----uvicorn backend:app --reload --host 127.0.0.1 --port 9999
+
 
     
