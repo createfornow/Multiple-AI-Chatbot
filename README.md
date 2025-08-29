@@ -1,5 +1,6 @@
-<img width="600" height="679" alt="image" src="https://github.com/user-attachments/assets/a428de11-ae7c-4a8e-8528-a2e28ec89f01" />
-How to run the project.
+<img width="500" height="529" alt="image" src="https://github.com/user-attachments/assets/a428de11-ae7c-4a8e-8528-a2e28ec89f01" />
+
+##How to run the project.
 
 1.  Set up virtual environment.
 
